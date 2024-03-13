@@ -3,6 +3,7 @@ package cli
 import (
 	"errors"
 	"fmt"
+	"os"
 )
 
 func Cli(args []string) error {
@@ -10,6 +11,13 @@ func Cli(args []string) error {
 		return errors.New("Write the filename!!!")
 	}
 
-	fmt.Println(args)
+	filepath := args[0]
+	bs, err := os.ReadFile(filepath)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(err)
+	fmt.Println(bs)
 	return nil
 }
