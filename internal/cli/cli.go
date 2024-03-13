@@ -1,7 +1,6 @@
 package cli
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -26,8 +25,6 @@ func ReadFile(filepath string) ([]byte, error) {
 		return nil, err
 	}
 
-	fmt.Println(err)
-	fmt.Println(bs)
 	return bs, nil
 }
 
