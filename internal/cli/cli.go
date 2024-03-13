@@ -1,17 +1,20 @@
 package cli
 
 import (
-	"errors"
 	"fmt"
+	"log"
 	"os"
 )
 
-func Cli(args []string) error {
+func Cli(args []string) {
 	if len(args) == 0 {
-		return errors.New("Write the filename!!!")
+		log.Panic("No filename given!")
 	}
 
-	filepath := args[0]
+	ReadFile(args[0])
+}
+
+func ReadFile(filepath string) error {
 	bs, err := os.ReadFile(filepath)
 	if err != nil {
 		return err

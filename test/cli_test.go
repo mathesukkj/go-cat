@@ -8,19 +8,23 @@ import (
 
 func TestCli(t *testing.T) {
 	t.Run("check if filename exists", func(t *testing.T) {
+		defer func() { _ = recover() }()
+
 		args := []string{}
-		err := cli.Cli(args)
+		cli.Cli(args)
 
-		if err == nil {
-			t.Errorf("Expected to get an error, but didn't get one")
-		}
+		t.Errorf("code didnt panic but it should")
 	})
+}
+
+func TestReadFile(t *testing.T) {
 	t.Run("check if file exists", func(t *testing.T) {
-		args := []string{"/tmp/arquivo-naoexistentekkk"}
-		err := cli.Cli(args)
+		filepath := "/tmp/arquivo-naoexistentekkk"
+		err := cli.ReadFile(filepath)
 
 		if err == nil {
 			t.Errorf("Expected to get an error, but didn't get one")
 		}
 	})
+
 }
