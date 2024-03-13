@@ -14,13 +14,13 @@ func Cli(args []string) {
 	ReadFile(args[0])
 }
 
-func ReadFile(filepath string) error {
+func ReadFile(filepath string) ([]byte, error) {
 	bs, err := os.ReadFile(filepath)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	fmt.Println(err)
 	fmt.Println(bs)
-	return nil
+	return bs, nil
 }
