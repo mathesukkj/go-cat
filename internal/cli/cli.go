@@ -2,6 +2,7 @@ package cli
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 )
@@ -11,7 +12,12 @@ func Cli(args []string) {
 		log.Panic("No filename given!")
 	}
 
-	ReadFile(args[0])
+	bs, err := ReadFile(args[0])
+	if err != nil {
+		panic(err)
+	}
+
+	PrintFile(os.Stdout, bs)
 }
 
 func ReadFile(filepath string) ([]byte, error) {
@@ -23,4 +29,8 @@ func ReadFile(filepath string) ([]byte, error) {
 	fmt.Println(err)
 	fmt.Println(bs)
 	return bs, nil
+}
+
+func PrintFile(w io.Writer, bs []byte) {
+	w.Write(bs)
 }

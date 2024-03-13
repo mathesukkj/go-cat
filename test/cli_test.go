@@ -8,6 +8,16 @@ import (
 	"mathesukkj/go-cat/internal/cli"
 )
 
+type SpyWriter struct {
+	called bool
+}
+
+func (s *SpyWriter) Write(p []byte) (int, error) {
+	fmt.Println(p)
+	s.called = true
+	return 0, nil
+}
+
 func TestCli(t *testing.T) {
 	t.Run("check if filename exists", func(t *testing.T) {
 		defer func() { _ = recover() }()
@@ -30,7 +40,7 @@ func TestReadFile(t *testing.T) {
 	})
 	t.Run("check if file is correctly read", func(t *testing.T) {
 		content := "arquivo de teste"
-		file := CreateTempFile(t, content)
+		file := createTempFile(t, content)
 		bs, err := cli.ReadFile(file.Name())
 
 		if err != nil {
@@ -44,7 +54,20 @@ func TestReadFile(t *testing.T) {
 	})
 }
 
-func CreateTempFile(t testing.TB, content string) *os.File {
+func TestPrintFile(t *testing.T) {
+	t.Run("check if file is correctly logged", func(t *testing.T) {
+		content := []byte("string")
+
+		spy := &SpyWriter{}
+		cli.PrintFile(spy, content)
+
+		if !spy.called {
+			t.Errorf("writer wasn't called when it should have been")
+		}
+	})
+}
+
+func createTempFile(t testing.TB, content string) *os.File {
 	t.Helper()
 
 	file, err := os.CreateTemp("/tmp/", "test")
