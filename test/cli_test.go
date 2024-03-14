@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"mathesukkj/gocat/internal/cli"
+	"github.com/mathesukkj/gocat/internal/cli"
 )
 
 type SpyWriter struct {

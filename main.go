@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"mathesukkj/gocat/internal/cli"
+	"github.com/mathesukkj/gocat/internal/cli"
 )
 
 func main() {
