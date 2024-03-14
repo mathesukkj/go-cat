@@ -26,7 +26,13 @@ gocat [FILE]
 
 **Examples:**
 
-Display content of a single file called file.txt:
+Display content of a single file:
 ```
 gocat file.txt
 ```
+
+Display content of multiple files:
+```
+gocat file.txt file2.txt file3.txt
+```
+
