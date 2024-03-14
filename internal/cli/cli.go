@@ -26,8 +26,7 @@ func ReadFile(filepaths []string) []byte {
 			errorMessage := fmt.Sprintf("gocat: %s\n", err)
 			fileContents = append(fileContents, []byte(errorMessage)...)
 		} else {
-			message := string(bs) + "\n"
-			fileContents = append(fileContents, []byte(message)...)
+			fileContents = append(fileContents, bs...)
 		}
 	}
 

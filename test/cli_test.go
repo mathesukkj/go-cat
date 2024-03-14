@@ -34,7 +34,7 @@ func TestReadFile(t *testing.T) {
 		file := createTempFile(t, "arquivo de teste")
 		bs := cli.ReadFile([]string{file.Name()})
 
-		if string(bs) != "arquivo de teste\n" {
+		if string(bs) != "arquivo de teste" {
 			t.Error("file not being read correctly")
 		}
 	})
@@ -45,7 +45,7 @@ func TestReadFile(t *testing.T) {
 
 		bs := cli.ReadFile(files)
 
-		if string(bs) != "test1\ntest2\n" {
+		if string(bs) != "test1test2" {
 			t.Error("file not being read correctly")
 		}
 	})
