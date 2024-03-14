@@ -52,6 +52,21 @@ func TestReadFile(t *testing.T) {
 			t.Error("file not being read correctly")
 		}
 	})
+	t.Run("read more than one file", func(t *testing.T) {
+		file1 := createTempFile(t, "test1")
+		file2 := createTempFile(t, "test2")
+		files := []string{file1.Name(), file2.Name()}
+
+		bs, err := cli.ReadFile(files)
+		if err != nil {
+			fmt.Println(err)
+			t.Errorf("got an error but it shouldnt have")
+		}
+
+		if string(bs) != "test1 test2" {
+			t.Error("file not being read correctly")
+		}
+	})
 }
 
 func TestPrintFile(t *testing.T) {
