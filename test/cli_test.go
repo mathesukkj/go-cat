@@ -30,25 +30,11 @@ func TestCli(t *testing.T) {
 }
 
 func TestReadFile(t *testing.T) {
-	t.Run("check if file exists", func(t *testing.T) {
-		filepath := "/tmp/arquivo-naoexistentekkk"
-		_, err := cli.ReadFile(filepath)
-
-		if err == nil {
-			t.Errorf("Expected to get an error, but didn't get one")
-		}
-	})
 	t.Run("check if file is correctly read", func(t *testing.T) {
-		content := "arquivo de teste"
-		file := createTempFile(t, content)
-		bs, err := cli.ReadFile(file.Name())
+		file := createTempFile(t, "arquivo de teste")
+		bs := cli.ReadFile([]string{file.Name()})
 
-		if err != nil {
-			fmt.Println(err)
-			t.Errorf("got an error but it shouldnt have")
-		}
-
-		if string(bs) != content {
+		if string(bs) != "arquivo de teste\n" {
 			t.Error("file not being read correctly")
 		}
 	})
@@ -57,13 +43,9 @@ func TestReadFile(t *testing.T) {
 		file2 := createTempFile(t, "test2")
 		files := []string{file1.Name(), file2.Name()}
 
-		bs, err := cli.ReadFile(files)
-		if err != nil {
-			fmt.Println(err)
-			t.Errorf("got an error but it shouldnt have")
-		}
+		bs := cli.ReadFile(files)
 
-		if string(bs) != "test1 test2" {
+		if string(bs) != "test1\ntest2\n" {
 			t.Error("file not being read correctly")
 		}
 	})
