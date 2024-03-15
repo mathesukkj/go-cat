@@ -36,3 +36,22 @@ Display content of multiple files:
 gocat file.txt file2.txt file3.txt
 ```
 
+Concatenate two text files and write them to a new file:
+```
+gocat file.txt file2.txt > newfile.txt
+```
+
+Copy the contents of file1 into file2:
+```
+gocat file.txt > file2.txt
+```
+
+Append the contents of file1 to file2:
+```
+gocat file.txt >> file2.txt
+```
+
+Concatenate the files, sort the set of files, and write the output to a new file:
+```
+gocat file1.txt file2.txt file3.txt | sort > test4
+```
