@@ -1,20 +1,28 @@
 package cli
 
 import (
+	"bufio"
 	"fmt"
 	"io"
-	"log"
 	"os"
 )
 
 func Cli(args []string) {
 	if len(args) == 0 {
-		log.Panic("No filename given!")
+		ScanAndOutput()
 	}
 
 	bs := ReadFile(args)
 
 	PrintFile(os.Stdout, bs)
+}
+
+func ScanAndOutput() {
+	sc := bufio.NewScanner(os.Stdin)
+	for sc.Scan() {
+		ln := sc.Text()
+		fmt.Fprintln(os.Stdout, ln)
+	}
 }
 
 func ReadFile(filepaths []string) []byte {
