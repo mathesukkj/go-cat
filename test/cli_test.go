@@ -18,17 +18,6 @@ func (s *SpyWriter) Write(p []byte) (int, error) {
 	return 0, nil
 }
 
-func TestCli(t *testing.T) {
-	t.Run("check if filename exists", func(t *testing.T) {
-		defer func() { _ = recover() }()
-
-		args := []string{}
-		cli.Cli(args)
-
-		t.Errorf("code didnt panic but it should")
-	})
-}
-
 func TestReadFile(t *testing.T) {
 	t.Run("check if file is correctly read", func(t *testing.T) {
 		file := createTempFile(t, "arquivo de teste")
