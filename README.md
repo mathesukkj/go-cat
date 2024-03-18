@@ -58,5 +58,10 @@ gocat file1.txt file2.txt file3.txt | sort > test4
 
 Read from stdin, and write to a new file:
 ```
-gocat sort > file.txt
+gocat >file.txt
+```
+
+Read from stdin, and append to an existant file:
+```
+gocat >>file.txt
 ```
