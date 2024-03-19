@@ -6,9 +6,7 @@ Gocat is a Go implementation of the Unix command 'cat', which displays the conte
 ## Features
 
 - Display content of a single file.
-- Error handling for file opening and reading.
-    
-
+- Support for reading from standard input if no file is provided.
 
 ## Installation
 
